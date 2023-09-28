@@ -1,0 +1,28 @@
+#app {
+  width: 100vw;
+  height: 100dvh;
+  color: #ffffffaa;
+  color: hsla(0, 0%, 100%, 0.8);
+  background: #182a41;
+  /* background: #22272b; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+
+  font-family: "Roboto", sans-serif;
+
+  --actionbar-height: 4rem;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+}
