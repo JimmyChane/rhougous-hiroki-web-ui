@@ -1,10 +1,13 @@
 #app {
+  --background-color: #182a41;
+  --actionbar-height: 4.5rem;
+
   width: 100vw;
   height: 100dvh;
   color: #ffffffaa;
   color: hsla(0, 0%, 100%, 0.8);
-  background: #182a41;
-  /* background: #22272b; */
+
+  background: var(--background-color);
 
   display: flex;
   flex-direction: column;
@@ -12,10 +15,9 @@
   justify-content: stretch;
 
   font-family: "Roboto", sans-serif;
-
-  --actionbar-height: 4rem;
 }
 * {
+  word-break: break-word;
   box-sizing: border-box;
   margin: 0;
   padding: 0;

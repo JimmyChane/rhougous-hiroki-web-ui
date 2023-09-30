@@ -63,7 +63,7 @@
       overflow-y: auto;
 
       .app-router-view {
-        max-width: 40rem;
+        // max-width: 40rem;
       }
     }
   }

@@ -45,7 +45,9 @@
     top: 0;
     left: 0;
     right: 0;
+
     width: 100%;
+    gap: 0.5rem;
 
     display: flex;
     flex-direction: row;

@@ -6,6 +6,11 @@
   import TwitterIcon from "@/assets/icon/twitter-bk.svg";
   import DiscordIcon from "@/assets/icon/discord-bk.svg";
   import FacebookIcon from "@/assets/icon/facebook-bk.svg";
+  import SteamIcon from "@/assets/icon/steam-bk.svg";
+  import YoutubeIcon from "@/assets/icon/youtube-bk.svg";
+  import TiktokIcon from "@/assets/icon/tiktok-bk.svg";
+  import TwitchIcon from "@/assets/icon/twitch-bk.svg";
+  import FuraffinityIcon from "@/assets/icon/furaffinity-bk.png";
 </script>
 
 <template>
@@ -21,17 +26,26 @@
         <Social href="https://twitter.com/Rhougous" :icon="TwitterIcon" text="Twitter" />
         <Social :icon="DiscordIcon" text="Discord" />
         <Social href="https://www.facebook.com/Rhougous" :icon="FacebookIcon" text="Facebook" />
-        <!-- <Social href="https://www.furaffinity.net/user/rhougous" text="FA" />
-        <Social href="https://steamcommunity.com/id/HiRhou" text="Steam" />
-        <Social href="https://www.twitch.tv/hirhou" text="Twitch" />
-        <Social href="https://www.youtube.com/channel/UCX87xxCf4ohR65nZoZfDQ-A" text="YouTube" />
-        <Social href="https://www.tiktok.com/@hirhou" text="Tiktok" /> -->
+
+        <Social
+          href="https://www.furaffinity.net/user/rhougous"
+          :icon="FuraffinityIcon"
+          text="FA"
+        />
+        <Social href="https://steamcommunity.com/id/HiRhou" :icon="SteamIcon" text="Steam" />
+        <Social href="https://www.twitch.tv/hirhou" :icon="TwitchIcon" text="Twitch" />
+        <Social
+          href="https://www.youtube.com/channel/UCX87xxCf4ohR65nZoZfDQ-A"
+          :icon="YoutubeIcon"
+          text="YouTube"
+        />
+        <Social href="https://www.tiktok.com/@hirhou" :icon="TiktokIcon" text="Tiktok" />
       </div>
     </div>
 
     <div class="home-avatar">
+      <img src="@/assets/img/rhougous-transparent.png" />
       <div class="home-avatar-foreground"></div>
-      <img src="@/assets/img/home-avatar.png" />
     </div>
   </div>
 </template>
@@ -46,20 +60,21 @@
     align-items: center;
     justify-content: space-between;
 
-    display: flex;
-    flex-direction: column;
-
     .home-content {
       width: 100%;
-      height: 50%;
-      max-height: 50%;
+      height: max-content;
+      min-height: max-content;
       padding: 1rem;
+      padding-top: 4rem;
+      padding-bottom: 6rem;
 
       display: flex;
       flex-direction: column;
+      flex: 1 1;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      gap: 2rem;
+      gap: 3rem;
 
       .home-greeting {
         display: flex;
@@ -69,48 +84,69 @@
         gap: 0.5rem;
 
         & > h1 {
-          font-size: 3rem;
+          font-size: 3em;
           color: white;
           line-height: 1;
         }
         & > P {
-          width: 70%;
+          min-width: 90%;
+          width: 55vmin;
           color: rgba(255, 255, 255, 0.8);
         }
       }
       .home-socials {
-        width: 100%;
-        gap: 0.2em;
+        width: 55vmin;
+        gap: 0.8em;
 
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+
+        @media (max-width: 600px) {
+          gap: 0.2em;
+        }
+      }
+
+      @media (min-width: 900px) {
+        font-size: 1.2rem;
+      }
+      @media (max-width: 550px), (max-height: 750px) {
+        padding-block: 3rem;
+        gap: 1.5rem;
+      }
+      @media (max-width: 450px), (max-height: 650px) {
+        padding-block: 2rem;
+        gap: 1rem;
       }
     }
     .home-avatar {
       width: 100%;
-      height: 50%;
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow: hidden;
+
+      & > img {
+        z-index: 1;
+        object-fit: contain;
+        display: flex;
+        flex-grow: 1;
+      }
       .home-avatar-foreground {
+        z-index: 2;
         width: 100%;
-        height: 50%;
+        height: 33%;
         display: flex;
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
+        pointer-events: none;
 
-        background-image: linear-gradient(0deg, #22272b, transparent);
-      }
-      & > img {
-        height: 50%;
-        object-fit: contain;
-        display: flex;
-        flex-grow: 1;
+        opacity: 0.33;
+        background-image: linear-gradient(0deg, var(--background-color), transparent);
       }
     }
   }
