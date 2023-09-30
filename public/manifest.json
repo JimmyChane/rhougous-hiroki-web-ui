@@ -1,0 +1,12 @@
+{
+  "name": "Rhougous Hiroki",
+  "short_name": "Rhougous",
+  "icons": [
+    { "src": "/icon/android-chrome-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon/android-chrome-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "start_url": "/",
+  "theme_color": "#182a41",
+  "background_color": "#182a41",
+  "display": "standalone"
+}
