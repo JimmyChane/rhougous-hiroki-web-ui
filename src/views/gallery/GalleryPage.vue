@@ -21,6 +21,9 @@
 
 <style scoped lang="scss">
   .gallery-page {
+    width: 100%;
+    max-width: var(--content-max-width);
+
     gap: 1rem;
     padding: 1rem;
 

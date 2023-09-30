@@ -16,67 +16,85 @@
 </script>
 
 <template>
-  <div class="home-actionbar" :data-scrolled-top="isScrolledTop">
-    <img class="actionbar-logo" src="@/assets/img/pfp.png" />
+  <div class="actionbar" :data-scrolled-top="isScrolledTop">
+    <div class="actionbar-body">
+      <img class="actionbar-logo" src="@/assets/img/pfp.png" />
 
-    <div class="actionbar-right">
-      <RouterLink
-        v-for="navigation of navigations"
-        :data-selected="route.name === navigation.key"
-        :to="`/${navigation.key}`"
-        >{{ navigation.text }}</RouterLink
-      >
+      <div class="actionbar-right">
+        <RouterLink
+          v-for="navigation of navigations"
+          :data-selected="route.name === navigation.key"
+          :to="`/${navigation.key}`"
+          >{{ navigation.text }}</RouterLink
+        >
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .home-actionbar {
-    &[data-scrolled-top="true"] {
-      background: black;
-    }
-
-    transition: all 200ms ease-in-out;
-
-    min-height: var(--actionbar-height);
-    padding-inline: 2rem;
+  .actionbar {
+    width: 100%;
 
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
 
-    width: 100%;
-    gap: 0.5rem;
-
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 
-    .actionbar-logo {
-      border-radius: 50%;
-      aspect-ratio: 1/1;
-      display: flex;
-      height: 2rem;
+    transition: all 200ms ease-in-out;
+    &[data-scrolled-top="true"] {
+      background: black;
     }
 
-    .actionbar-right {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
+    .actionbar-body {
+      width: 100%;
+      max-width: var(--content-max-width);
+      min-height: var(--actionbar-height);
+
+      padding-inline: 2rem;
       gap: 1.5rem;
 
-      & > * {
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        font-size: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
-        &[data-selected="true"] {
-          color: white;
-          font-weight: 600;
+      .actionbar-logo {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        display: flex;
+        height: 2rem;
+      }
+
+      .actionbar-right {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1.5rem;
+
+        & > * {
+          color: rgba(255, 255, 255, 0.7);
+          text-decoration: none;
+          font-size: 1rem;
+
+          &[data-selected="true"] {
+            color: white;
+            font-weight: 600;
+          }
+        }
+      }
+
+      @media (min-width: 900px) {
+        gap: 3rem;
+        .actionbar-right {
+          gap: 3rem;
+          justify-content: flex-start;
         }
       }
     }

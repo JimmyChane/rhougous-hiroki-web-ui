@@ -54,6 +54,7 @@
 <style scoped lang="scss">
   .about-page {
     width: 100%;
+    max-width: var(--content-max-width);
 
     gap: 1rem;
     padding: 2rem;

@@ -43,9 +43,11 @@
       </div>
     </div>
 
-    <div class="home-avatar">
-      <img src="@/assets/img/rhougous-transparent.png" />
-      <div class="home-avatar-foreground"></div>
+    <div class="home-avatar-parent">
+      <div class="home-avatar">
+        <img src="@/assets/img/rhougous-transparent.png" />
+        <div class="home-avatar-foreground"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -76,11 +78,13 @@
       text-align: center;
       gap: 3rem;
 
+      transition: all 400ms ease;
+
       .home-greeting {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: inherit;
+        text-align: inherit;
         gap: 0.5rem;
 
         & > h1 {
@@ -90,7 +94,7 @@
         }
         & > P {
           min-width: 90%;
-          width: 55vmin;
+          max-width: 55vmin;
           color: rgba(255, 255, 255, 0.8);
         }
       }
@@ -101,8 +105,8 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
+        align-items: inherit;
+        justify-content: inherit;
 
         @media (max-width: 600px) {
           gap: 0.2em;
@@ -112,41 +116,103 @@
       @media (min-width: 900px) {
         font-size: 1.2rem;
       }
-      @media (max-width: 550px), (max-height: 750px) {
+      @media (max-width: 550px), (max-height: 850px) {
         padding-block: 3rem;
         gap: 1.5rem;
       }
-      @media (max-width: 450px), (max-height: 650px) {
+      @media (max-width: 450px), (max-height: 750px) {
         padding-block: 2rem;
         gap: 1rem;
       }
     }
-    .home-avatar {
+    .home-avatar-parent {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-
-      & > img {
-        z-index: 1;
-        object-fit: contain;
-        display: flex;
-        flex-grow: 1;
-      }
-      .home-avatar-foreground {
-        z-index: 2;
+      .home-avatar {
         width: 100%;
-        height: 33%;
         display: flex;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        pointer-events: none;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
 
-        opacity: 0.33;
-        background-image: linear-gradient(0deg, var(--background-color), transparent);
+        & > img {
+          z-index: 1;
+          object-fit: contain;
+          display: flex;
+          flex-grow: 1;
+        }
+        .home-avatar-foreground {
+          z-index: 2;
+          width: 100%;
+          height: 33%;
+          display: flex;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          pointer-events: none;
+
+          opacity: 0.33;
+          background-image: linear-gradient(0deg, var(--background-color), transparent);
+        }
+      }
+    }
+
+    @media (min-width: 900px) {
+      flex-direction: row-reverse;
+      align-items: flex-start;
+      max-width: var(--content-max-width);
+
+      .home-content {
+        height: 100%;
+        align-items: flex-start;
+        text-align: start;
+        padding: 3rem;
+        padding-left: 2rem;
+        flex-grow: 1 1;
+        justify-content: flex-start;
+        overflow: hidden;
+
+        .home-greeting {
+          width: 100%;
+        }
+
+        .home-socials {
+          height: 50vmin;
+          flex: 1 1;
+          flex-direction: column;
+        }
+      }
+      .home-avatar-parent {
+        top: var(--actionbar-height);
+        left: 0;
+        position: sticky;
+
+        margin: 2rem;
+        margin-right: 0;
+
+        height: calc(100% - 4rem);
+        max-height: 50rem;
+        width: 45%;
+        max-width: 40rem;
+
+        flex-grow: 2 2;
+        justify-content: flex-end;
+        border-radius: 2rem;
+        overflow: hidden;
+        background: linear-gradient(180deg, #00000000 0%, #00000066 100%);
+
+        .home-avatar {
+          justify-content: flex-end;
+
+          & > img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            flex-grow: unset;
+            object-position: top;
+          }
+        }
       }
     }
   }

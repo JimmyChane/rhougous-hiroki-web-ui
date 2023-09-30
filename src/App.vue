@@ -39,7 +39,7 @@
 
     <div class="app-body" :style="{ 'z-index': '2' }" @scroll="onScroll">
       <Actionbar :style="{ 'z-index': '2' }" :is-scrolled-top="scrollTop > 0" />
-      <RouterView class="app-router-view" :style="{ 'z-index': '1' }" />
+      <RouterView :style="{ 'z-index': '1' }" />
     </div>
   </div>
 </template>
@@ -61,10 +61,6 @@
       flex-direction: column;
       align-items: center;
       overflow-y: auto;
-
-      .app-router-view {
-        // max-width: 40rem;
-      }
     }
   }
 </style>

@@ -1,6 +1,8 @@
 #app {
   --background-color: #182a41;
   --actionbar-height: 4.5rem;
+  --content-max-width: 90rem;
+  --content-max-width: 80rem;
 
   width: 100vw;
   height: 100dvh;
