@@ -1,7 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { onMounted, ref } from "vue";
+
+  onMounted(() => {
+    setTimeout(() => {
+      show.value = true;
+    }, 100);
+  });
+  const show = ref(false);
+</script>
 
 <template>
-  <div class="story-page">
+  <div class="story-page" :data-show="show">
     <div class="story-title">
       <h1>Rhougous Hiroki</h1>
     </div>
@@ -130,6 +139,14 @@
 
 <style scoped lang="scss">
   .story-page {
+    transition: all 400ms ease;
+    opacity: 0;
+    transform: translateY(0.5rem);
+    &[data-show="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     gap: 1rem;
     padding: 2rem;
 

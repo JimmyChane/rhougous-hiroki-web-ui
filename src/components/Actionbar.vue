@@ -18,7 +18,7 @@
 <template>
   <div class="actionbar" :data-scrolled-top="isScrolledTop">
     <div class="actionbar-body">
-      <img class="actionbar-logo" src="@/assets/img/pfp.png" />
+      <img class="actionbar-logo" src="@/assets/img/pfp.webp" />
 
       <div class="actionbar-right">
         <RouterLink

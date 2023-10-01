@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { onMounted, ref } from "vue";
   import Social from "./SocialItem.vue";
 
   // icon
@@ -11,10 +12,17 @@
   import TiktokIcon from "@/assets/icon/tiktok-bk.svg";
   import TwitchIcon from "@/assets/icon/twitch-bk.svg";
   import FuraffinityIcon from "@/assets/icon/furaffinity-bk.png";
+
+  onMounted(() => {
+    setTimeout(() => {
+      show.value = true;
+    }, 100);
+  });
+  const show = ref(false);
 </script>
 
 <template>
-  <div class="home-page">
+  <div class="home-page" :data-show="show">
     <div class="home-content">
       <div class="home-greeting">
         <h1>Rhougous Hiroki</h1>
@@ -24,7 +32,11 @@
       <div class="home-socials">
         <Social href="https://t.me/Rhougous" :icon="TelegramIcon" text="Telegram" />
         <Social href="https://twitter.com/Rhougous" :icon="TwitterIcon" text="Twitter" />
-        <Social :icon="DiscordIcon" text="Discord" />
+        <Social
+          href="https://discordapp.com/users/961143663554068550"
+          :icon="DiscordIcon"
+          text="Discord"
+        />
         <Social href="https://www.facebook.com/Rhougous" :icon="FacebookIcon" text="Facebook" />
 
         <Social
@@ -45,7 +57,7 @@
 
     <div class="home-avatar-parent">
       <div class="home-avatar">
-        <img src="@/assets/img/rhougous-transparent.png" />
+        <img src="@/assets/img/rhougous-transparent.webp" />
         <div class="home-avatar-foreground"></div>
       </div>
     </div>
@@ -54,6 +66,14 @@
 
 <style scoped lang="scss">
   .home-page {
+    transition: all 400ms ease;
+    opacity: 0;
+    transform: translateY(0.5rem);
+    &[data-show="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     width: 100%;
     height: calc(100dvh - var(--actionbar-height));
 
