@@ -56,11 +56,11 @@
     appBackground.value = getBackground();
     setTimeout(() => (show.value = true), 100);
 
-    // to load background image
-    [HomeBackground, AboutBackground, StoryBackground, GalleryBackground].forEach((src) => {
-      const img = document.createElement("img");
-      img.src = src;
-    });
+    // // to load background image
+    // [HomeBackground, AboutBackground, StoryBackground, GalleryBackground].forEach((src) => {
+    //   const img = document.createElement("img");
+    //   img.src = src;
+    // });
   });
 </script>
 
