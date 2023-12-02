@@ -2,6 +2,7 @@
   import { onMounted, ref, watch } from "vue";
   import { RouterView, useRoute } from "vue-router";
   import Actionbar from "@/components/Actionbar.vue";
+  import AppBackground from "./App-Background.vue";
 
   // background
   import HomeBackground from "@/assets/bg/bg-home.webp";
@@ -16,11 +17,11 @@
   const appBodyScrollTop = ref(0);
   const appBackground = ref("");
 
-  const onScroll = (e: Event) => {
+  function onScroll(e: Event) {
     const target = e.target as HTMLDivElement;
     appBodyScrollTop.value = target.scrollTop ?? 0;
-  };
-  const getBackground = () => {
+  }
+  function getBackground() {
     switch (route.name) {
       case "home":
         return HomeBackground;
@@ -33,7 +34,7 @@
       default:
         return "";
     }
-  };
+  }
 
   watch(
     () => route.name,
@@ -55,19 +56,13 @@
   onMounted(() => {
     appBackground.value = getBackground();
     setTimeout(() => (show.value = true), 100);
-
-    // // to load background image
-    // [HomeBackground, AboutBackground, StoryBackground, GalleryBackground].forEach((src) => {
-    //   const img = document.createElement("img");
-    //   img.src = src;
-    // });
   });
 </script>
 
 <template>
   <div class="app">
     <div class="app-background-parent" :data-show="show">
-      <img :style="{ 'z-index': '1' }" class="app-background" :src="appBackground" />
+      <AppBackground :style="{ 'z-index': '1' }" :src="appBackground" />
     </div>
 
     <div class="app-body" :style="{ 'z-index': '2' }" ref="refAppBody" @scroll="onScroll">
@@ -93,18 +88,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    .app-background {
-      display: flex;
-      object-fit: cover;
-      pointer-events: none;
-
-      width: 100%;
-      height: 100%;
-      min-width: 100%;
-      min-height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-    }
   }
 
   .app {
