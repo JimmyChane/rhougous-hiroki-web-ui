@@ -11,7 +11,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt",
       manifest: {
         name: "Rhougous Hiroki",
         short_name: "Rhougous",
