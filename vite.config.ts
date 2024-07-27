@@ -27,9 +27,48 @@ export default defineConfig({
         display: "browser",
       },
       workbox: {
-        globPatterns: ["**/*.{png,jpg,jpeg,webp,gif,svg}"],
+        globPatterns: ["**/*.{js,css,jpg,jpeg,png,webp,gif,svg}"],
         cleanupOutdatedCaches: true,
         navigateFallback: undefined,
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkOnly",
+          },
+          {
+            urlPattern: /.*\.js$/,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "js-cache",
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 6 * 60 * 60, // 6 hours
+              },
+            },
+          },
+          {
+            urlPattern: /.*\.css$/,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "css-cache",
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 6 * 60 * 60, // 6 hours
+              },
+            },
+          },
+          {
+            urlPattern: /.*\.(?:png|jpg|jpeg|webp|gif|svg)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "image-cache",
+              expiration: {
+                maxEntries: 60,
+                maxAgeSeconds: 60 * 24 * 60 * 60, // 60 days
+              },
+            },
+          },
+        ],
       },
     }),
   ],
