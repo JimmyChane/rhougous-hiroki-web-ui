@@ -1,9 +1,7 @@
 <script setup lang="ts">
   import { useRoute } from "vue-router";
 
-  defineProps({
-    isScrolledTop: { type: Boolean, default: false },
-  });
+  defineProps({ isScrolledTop: { type: Boolean, default: false } });
 
   const route = useRoute();
 
@@ -25,8 +23,9 @@
           v-for="navigation of navigations"
           :data-selected="route.name === navigation.key"
           :to="`/${navigation.key}`"
-          >{{ navigation.text }}</RouterLink
         >
+          {{ navigation.text }}
+        </RouterLink>
       </div>
     </div>
   </div>

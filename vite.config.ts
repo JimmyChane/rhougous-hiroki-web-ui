@@ -27,7 +27,7 @@ export default defineConfig({
         display: "browser",
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,jpg,jpeg,png,webp,gif,svg}"],
+        globPatterns: ["**/*"],
         cleanupOutdatedCaches: true,
         navigateFallback: undefined,
         runtimeCaching: [

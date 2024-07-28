@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref, watch } from "vue";
   import { RouterView, useRoute } from "vue-router";
-  import Actionbar from "@/components/Actionbar.vue";
+  import AppActionbar from "./App-Actionbar.vue";
   import AppBackground from "./App-Background.vue";
 
   // background
@@ -66,7 +66,7 @@
     </div>
 
     <div class="app-body" :style="{ 'z-index': '2' }" ref="refAppBody" @scroll="onScroll">
-      <Actionbar :style="{ 'z-index': '2' }" :is-scrolled-top="appBodyScrollTop > 0" />
+      <AppActionbar :style="{ 'z-index': '2' }" :is-scrolled-top="appBodyScrollTop > 0" />
       <RouterView :style="{ 'z-index': '1' }" />
     </div>
   </div>
