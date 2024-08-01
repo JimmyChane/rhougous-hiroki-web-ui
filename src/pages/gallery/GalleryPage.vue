@@ -33,10 +33,6 @@
     transition: all 400ms ease;
     opacity: 0;
     transform: translateY(0.5rem);
-    &[data-show="true"] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     width: 100%;
     max-width: var(--content-max-width);
@@ -48,6 +44,11 @@
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+
+    &[data-show="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .gallery-title {
       width: 100%;

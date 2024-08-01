@@ -85,10 +85,6 @@
     transition: all 400ms ease;
     opacity: 0;
     transform: translateY(0.5rem);
-    &[data-show="true"] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     width: 100%;
     max-width: var(--content-max-width);
@@ -99,6 +95,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    &[data-show="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .about-title {
       width: 100%;

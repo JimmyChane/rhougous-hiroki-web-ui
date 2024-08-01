@@ -22,7 +22,7 @@
         <RouterLink
           v-for="navigation of navigations"
           :data-selected="route.name === navigation.key"
-          :to="`/${navigation.key}`"
+          :to="{ name: navigation.key }"
         >
           {{ navigation.text }}
         </RouterLink>

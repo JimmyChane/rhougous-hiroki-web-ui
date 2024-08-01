@@ -142,10 +142,6 @@
     transition: all 400ms ease;
     opacity: 0;
     transform: translateY(0.5rem);
-    &[data-show="true"] {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     gap: 1rem;
     padding: 2rem;
@@ -161,6 +157,12 @@
     flex-direction: column;
     align-items: stretch;
     gap: 2rem;
+
+    &[data-show="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .story-title {
       width: 100%;
       display: flex;
