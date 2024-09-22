@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt",
       manifest: {
         name: "Rhougous Hiroki",
         short_name: "Rhougous",

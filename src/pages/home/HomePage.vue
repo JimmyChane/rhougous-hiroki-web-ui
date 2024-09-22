@@ -37,7 +37,7 @@
           :icon="DiscordIcon"
           text="Discord"
         />
-        <Social href="https://www.facebook.com/Rhougous" :icon="FacebookIcon" text="Facebook" />
+        <Social href="https://www.facebook.com/RhougousHiroki" :icon="FacebookIcon" text="Facebook" />
 
         <Social
           href="https://www.furaffinity.net/user/rhougous"
