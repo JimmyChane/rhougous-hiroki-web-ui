@@ -1,9 +1,5 @@
 <script setup lang="ts">
-  defineProps({
-    href: { type: String },
-    icon: { type: String },
-    text: { type: String },
-  });
+  defineProps<{ href: string; icon: string; text: string }>();
 </script>
 
 <template>

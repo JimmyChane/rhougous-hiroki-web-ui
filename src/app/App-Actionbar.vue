@@ -1,16 +1,30 @@
 <script setup lang="ts">
+  import { ABOUT, GALLERY, HOME, STORY, type Navigation } from "@/router/router";
+  import { computed } from "vue";
   import { useRoute } from "vue-router";
 
-  defineProps({ isScrolledTop: { type: Boolean, default: false } });
+  defineProps<{ isScrolledTop?: boolean }>();
 
   const route = useRoute();
 
-  const navigations = [
-    { key: "home", text: "Home" },
-    { key: "about", text: "About" },
-    { key: "story", text: "Story" },
-    { key: "gallery", text: "Gallery" },
-  ];
+  const navigations = computed(() => {
+    return [HOME, ABOUT, STORY, GALLERY].map((navigation) => {
+      return { id: navigation.id, text: getText(navigation) };
+    });
+  });
+
+  function getText(navigation: Navigation) {
+    switch (navigation.id) {
+      case HOME.id:
+        return "Home";
+      case ABOUT.id:
+        return "About";
+      case STORY.id:
+        return "Story";
+      case GALLERY.id:
+        return "Gallery";
+    }
+  }
 </script>
 
 <template>
@@ -21,8 +35,8 @@
       <div class="actionbar-right">
         <RouterLink
           v-for="navigation of navigations"
-          :data-selected="route.name === navigation.key"
-          :to="{ name: navigation.key }"
+          :data-selected="route.name === navigation.id"
+          :to="{ name: navigation.id }"
         >
           {{ navigation.text }}
         </RouterLink>

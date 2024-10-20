@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { onMounted, ref, watch } from "vue";
+  import { ref, watch } from "vue";
   import { RouterView, useRoute } from "vue-router";
   import AppActionbar from "./App-Actionbar.vue";
   import AppBackground from "./App-Background.vue";
@@ -9,53 +9,48 @@
   import AboutBackground from "@/assets/bg/bg-about.webp";
   import StoryBackground from "@/assets/bg/bg-story.webp";
   import GalleryBackground from "@/assets/bg/bg-gallery.webp";
+  import { ABOUT, GALLERY, HOME, STORY } from "@/router/router";
+  import { computedAsync } from "@vueuse/core";
+  import { wait } from "@/utils/Await";
 
   const route = useRoute();
 
   const show = ref(false);
   const refAppBody = ref<HTMLDivElement>();
   const appBodyScrollTop = ref(0);
-  const appBackground = ref("");
+  const appBackground = computedAsync(
+    async () => {
+      const routeName = route.name;
 
-  function onScroll(e: Event) {
-    const target = e.target as HTMLDivElement;
-    appBodyScrollTop.value = target.scrollTop ?? 0;
-  }
-  function getBackground() {
-    switch (route.name) {
-      case "home":
-        return HomeBackground;
-      case "about":
-        return AboutBackground;
-      case "story":
-        return StoryBackground;
-      case "gallery":
-        return GalleryBackground;
-      default:
-        return "";
-    }
-  }
-
-  watch(
-    () => route.name,
-    () => {
-      if (refAppBody.value) {
-        refAppBody.value.scrollTo({ top: 0 });
+      show.value = false;
+      await wait(400);
+      if (route.name === routeName) {
+        show.value = true;
       }
 
-      const name = route.name;
-      show.value = false;
-      setTimeout(() => {
-        if (name !== route.name) return;
-        appBackground.value = getBackground();
-        show.value = true;
-      }, 400);
+      switch (routeName) {
+        case HOME.id:
+          return HomeBackground;
+        case ABOUT.id:
+          return AboutBackground;
+        case STORY.id:
+          return StoryBackground;
+        case GALLERY.id:
+          return GalleryBackground;
+        default:
+          return "";
+      }
     },
+    "",
+    { lazy: true },
   );
 
-  onMounted(() => {
-    appBackground.value = getBackground();
-    setTimeout(() => (show.value = true), 100);
+  function onScroll() {
+    appBodyScrollTop.value = refAppBody.value?.scrollTop ?? 0;
+  }
+
+  watch([() => route.name], () => {
+    refAppBody.value?.scrollTo({ top: 0 });
   });
 </script>
 
