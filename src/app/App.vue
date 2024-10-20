@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, watch } from "vue";
+  import { computed, ref, watch } from "vue";
   import { RouterView, useRoute } from "vue-router";
   import AppActionbar from "./App-Actionbar.vue";
   import AppBackground from "./App-Background.vue";
@@ -11,7 +11,8 @@
   import GalleryBackground from "@/assets/bg/bg-gallery.webp";
   import { ABOUT, GALLERY, HOME, STORY } from "@/router/router";
   import { computedAsync } from "@vueuse/core";
-  import { wait } from "@/utils/Await";
+  import { wait, waitFrame } from "@/utils/Await";
+  import SplashView from "@/views/SplashView.vue";
 
   const route = useRoute();
 
@@ -24,6 +25,7 @@
 
       show.value = false;
       await wait(400);
+      await waitFrame();
       if (route.name === routeName) {
         show.value = true;
       }
@@ -45,6 +47,19 @@
     { lazy: true },
   );
 
+  const splashDuration = computed(() => 800);
+  const showSplash = computedAsync(async () => {
+    await wait(splashDuration.value);
+    await waitFrame();
+    return false;
+  }, true);
+  const useSplash = computedAsync(async () => {
+    if (showSplash.value) return true;
+    await wait(splashDuration.value);
+    await waitFrame();
+    return false;
+  }, true);
+
   function onScroll() {
     appBodyScrollTop.value = refAppBody.value?.scrollTop ?? 0;
   }
@@ -57,13 +72,15 @@
 <template>
   <div class="app">
     <div class="app-background-parent" :data-show="show">
-      <AppBackground :style="{ 'z-index': '1' }" :src="appBackground" />
+      <AppBackground style="z-index: 1" :src="appBackground" />
     </div>
 
-    <div class="app-body" :style="{ 'z-index': '2' }" ref="refAppBody" @scroll="onScroll">
-      <AppActionbar :style="{ 'z-index': '2' }" :is-scrolled-top="appBodyScrollTop > 0" />
-      <RouterView :style="{ 'z-index': '1' }" />
+    <div class="app-body" style="z-index: 2" ref="refAppBody" @scroll="onScroll">
+      <AppActionbar style="z-index: 2" :is-scrolled-top="appBodyScrollTop > 0" />
+      <RouterView style="z-index: 1" />
     </div>
+
+    <SplashView v-if="useSplash" style="z-index: 3" :show="showSplash" />
   </div>
 </template>
 
