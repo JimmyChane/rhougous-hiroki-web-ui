@@ -9,6 +9,8 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      selfDestroying: true,
+      injectRegister: null,
       registerType: "prompt",
       manifest: {
         name: "Rhougous Hiroki",
