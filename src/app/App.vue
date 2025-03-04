@@ -1,18 +1,19 @@
 <script setup lang="ts">
+  import { computedAsync } from "@vueuse/core";
   import { computed, ref, watch } from "vue";
   import { RouterView, useRoute } from "vue-router";
+
+  import AboutBackground from "@/assets/bg/bg-about.webp";
+  import GalleryBackground from "@/assets/bg/bg-gallery.webp";
+  import HomeBackground from "@/assets/bg/bg-home.webp";
+  import StoryBackground from "@/assets/bg/bg-story.webp";
+  import { ABOUT, GALLERY, HOME, STORY } from "@/router/router";
+  import { wait, waitFrame } from "@/utils/Await";
+
+  import SplashView from "@/views/SplashView.vue";
+
   import AppActionbar from "./App-Actionbar.vue";
   import AppBackground from "./App-Background.vue";
-
-  // background
-  import HomeBackground from "@/assets/bg/bg-home.webp";
-  import AboutBackground from "@/assets/bg/bg-about.webp";
-  import StoryBackground from "@/assets/bg/bg-story.webp";
-  import GalleryBackground from "@/assets/bg/bg-gallery.webp";
-  import { ABOUT, GALLERY, HOME, STORY } from "@/router/router";
-  import { computedAsync } from "@vueuse/core";
-  import { wait, waitFrame } from "@/utils/Await";
-  import SplashView from "@/views/SplashView.vue";
 
   const route = useRoute();
 

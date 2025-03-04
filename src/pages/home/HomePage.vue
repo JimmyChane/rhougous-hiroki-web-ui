@@ -1,17 +1,17 @@
 <script setup lang="ts">
   import { onMounted, ref } from "vue";
-  import Social from "./SocialItem.vue";
 
-  // icon
-  import TelegramIcon from "@/assets/icon/telegram-bk.svg";
-  import TwitterIcon from "@/assets/icon/twitter-bk.svg";
   import DiscordIcon from "@/assets/icon/discord-bk.svg";
   import FacebookIcon from "@/assets/icon/facebook-bk.svg";
+  import FuraffinityIcon from "@/assets/icon/furaffinity-bk.png";
   import SteamIcon from "@/assets/icon/steam-bk.svg";
-  import YoutubeIcon from "@/assets/icon/youtube-bk.svg";
+  import TelegramIcon from "@/assets/icon/telegram-bk.svg";
   import TiktokIcon from "@/assets/icon/tiktok-bk.svg";
   import TwitchIcon from "@/assets/icon/twitch-bk.svg";
-  import FuraffinityIcon from "@/assets/icon/furaffinity-bk.png";
+  import TwitterIcon from "@/assets/icon/twitter-bk.svg";
+  import YoutubeIcon from "@/assets/icon/youtube-bk.svg";
+
+  import Social from "./SocialItem.vue";
 
   onMounted(() => {
     setTimeout(() => {
@@ -37,7 +37,11 @@
           :icon="DiscordIcon"
           text="Discord"
         />
-        <Social href="https://www.facebook.com/RhougousHiroki" :icon="FacebookIcon" text="Facebook" />
+        <Social
+          href="https://www.facebook.com/RhougousHiroki"
+          :icon="FacebookIcon"
+          text="Facebook"
+        />
 
         <Social
           href="https://www.furaffinity.net/user/rhougous"

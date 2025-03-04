@@ -1,8 +1,7 @@
-import { fileURLToPath, URL } from "node:url";
-
+import vue from "@vitejs/plugin-vue";
+import { URL, fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,10 +32,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         navigateFallback: undefined,
         runtimeCaching: [
-          {
-            urlPattern: ({ request }) => request.mode === "navigate",
-            handler: "NetworkOnly",
-          },
+          { urlPattern: ({ request }) => request.mode === "navigate", handler: "NetworkOnly" },
           {
             urlPattern: /.*\.js$/,
             handler: "NetworkFirst",
@@ -74,9 +70,5 @@ export default defineConfig({
       },
     }),
   ],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
+  resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
 });

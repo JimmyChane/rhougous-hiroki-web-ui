@@ -1,7 +1,8 @@
 <script setup lang="ts">
-  import { ABOUT, GALLERY, HOME, STORY, type Navigation } from "@/router/router";
   import { computed } from "vue";
   import { useRoute } from "vue-router";
+
+  import { ABOUT, GALLERY, HOME, type Navigation, STORY } from "@/router/router";
 
   defineProps<{ isScrolledTop?: boolean }>();
 
